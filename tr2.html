@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Scroll-Responsive Navbar</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            padding-top: 50px; /* Adjusted to show the navbar */
+            margin: 0; /* Reset default margin */
+        }
+
+        .navbar {
+            background-color: #3498db; /* Blue color */
+            position: fixed;
+            width: 100%;
+            top: 0;
+            transition: top 0.3s;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #ecf0f1; /* Light gray color */
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #2980b9; /* Darker blue on hover */
+        }
+
+        .main {
+            padding: 16px;
+            margin-top: 80px; /* Increased margin-top for better visibility */
+            height: 1500px; /* Added height to demonstrate scrolling */
+        }
+
+        h1 {
+            color: #2c3e50; /* Dark gray color for heading */
+        }
+
+        p {
+            color: #7f8c8d; /* Light gray color for paragraph text */
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar" id="navbar">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+    </div>
+    <div class="main">
+        <h1>Explore the Modern Scroll-Responsive Navbar</h1>
+        <p>Scroll down and up to see the navbar animate based on scroll position.</p>
+    </div>
+    <script>
+        // When the user scrolls down from the top of the document, hide the navbar. When the user
+        //scrolls up, show the navbar
+        var prevScrollpos = window.pageYOffset;
+        window.onscroll = function() {
+            var currentScrollPos = window.pageYOffset;
+            if (prevScrollpos > currentScrollPos) {
+                document.getElementById("navbar").style.top = "0";
+            } else {
+                document.getElementById("navbar").style.top = "-50px";
+            }
+            prevScrollpos = currentScrollPos;
+        }
+    </script>
+</body>
+</html>

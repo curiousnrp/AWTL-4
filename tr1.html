@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple To-Do List</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+      text-align: center;
+    }
+    h2 {
+      color: #333;
+    }
+    #taskInput {
+      padding: 8px;
+      width: 60%;
+      border: none;
+      border-radius: 4px;
+      margin-right: 10px;
+    }
+    #addTaskBtn, .task button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #addTaskBtn {
+      background-color: #4caf50;
+      color: #fff;
+    }
+    .task {
+      background: #fff;
+      margin: 10px auto;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .task input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    .completed {
+      text-decoration: line-through;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>My To-Do List</h2>
+  <input type="text" id="taskInput" placeholder="Add new task...">
+  <button id="addTaskBtn" onclick="addTask()">Add Task</button>
+  <ul id="tasksList"></ul>
+
+  <script>
+    let tasks = [], taskInput = document.getElementById('taskInput'), tasksList = document.getElementById('tasksList');
+
+    function addTask() {
+      if (taskInput.value.trim() !== "") {
+        tasks.push({ text: taskInput.value, completed: false });
+        taskInput.value = "";
+        renderTasks();
+      }
+    }
+
+    function toggleCompletion(index) {
+      tasks[index].completed = !tasks[index].completed;
+      renderTasks();
+    }
+
+    function removeTask(index) {
+      tasks.splice(index, 1);
+      renderTasks();
+    }
+
+    function renderTasks() {
+      tasksList.innerHTML = tasks.map((task, index) => `
+        <li class="task ${task.completed ? 'completed' : ''}">
+          <div>
+            <input type="checkbox" ${task.completed ? 'checked' : ''} onclick="toggleCompletion(${index})">
+            ${task.text}
+          </div>
+          <button onclick="removeTask(${index})">Remove</button>
+        </li>
+      `).join('');
+    }
+  </script>
+
+</body>
+</html>
